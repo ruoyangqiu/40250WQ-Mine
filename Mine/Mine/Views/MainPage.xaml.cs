@@ -26,7 +26,7 @@ namespace Mine.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemEnum.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemEnum.Items, (NavigationPage)Detail);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Mine.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemEnum.Browse:
+                    case (int)MenuItemEnum.Items:
                         MenuPages.Add(id, new NavigationPage(new ItemIndexPage()));
                         break;
                     case (int)MenuItemEnum.About:
