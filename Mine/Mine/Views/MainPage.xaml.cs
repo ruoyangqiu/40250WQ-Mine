@@ -26,7 +26,7 @@ namespace Mine.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemEnum.Items, (NavigationPage)Detail);
+           //MenuPages.Add((int)MenuItemEnum.Items, (NavigationPage)Detail);
         }
 
         /// <summary>
