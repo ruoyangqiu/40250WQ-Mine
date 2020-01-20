@@ -49,6 +49,17 @@ namespace Mine.ViewModels
         }
 
         /// <summary>
+        /// API to Read the Data
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public async Task<ItemModel> Read(string id)
+        {
+            var result = await DataStore.ReadAsync(id);
+            return result;
+        }
+
+        /// <summary>
         /// API to add the Data
         /// </summary>
         /// <param name="data"></param>
