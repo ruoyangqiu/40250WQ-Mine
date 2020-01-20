@@ -23,11 +23,13 @@ namespace Mine.Views
         /// </summary>
         public ItemCreatePage(ItemViewModel data)
         {
+
             InitializeComponent();
 
             data.Data = new ItemModel();
 
             BindingContext = this.ViewModel = data;
+
         }
 
         /// <summary>
@@ -54,6 +56,11 @@ namespace Mine.Views
         void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             ValueValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
         }
     }
 }
