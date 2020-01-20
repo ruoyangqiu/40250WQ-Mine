@@ -47,5 +47,13 @@ namespace Mine.Views
         {
             await Navigation.PopModalAsync();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            // base.OnBackButtonPressed();
+
+            // Add your code here...
+            return true;
+        }
     }
 }
