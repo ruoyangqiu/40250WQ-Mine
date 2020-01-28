@@ -19,6 +19,9 @@
         <Label Text="{Binding Data.Description}" FontSize="Small"/>
         <Label Text="Value:" FontSize="Medium" />
         <Label Text="{Binding Data.Value}" FontSize="Small"/>
+
+        <Label Text="History Edits:" FontSize="Medium" />
+        <Label x:Name="HistoryCountLabel" FontSize="Small" />
     </StackLayout>
     
 </ContentPage>

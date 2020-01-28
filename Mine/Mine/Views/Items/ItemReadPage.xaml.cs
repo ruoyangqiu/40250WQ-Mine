@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Mine.Models;
 using Mine.ViewModels;
 using System;
+using System.Linq;
 
 namespace Mine.Views
 {
@@ -30,6 +31,8 @@ namespace Mine.Views
             InitializeComponent();
 
             BindingContext = this.ViewModel = data;
+
+            HistoryCountLabel.Text = data.Data.AuditHistory?.Count().ToString() ?? "None";
         }
 
         /// <summary>
