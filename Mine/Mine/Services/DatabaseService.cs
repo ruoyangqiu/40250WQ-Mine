@@ -64,7 +64,6 @@ namespace Mine.Services
             Database.UpdateAsync(Data);
 
             return Task.FromResult(true);
-
         }
 
         public Task<bool> DeleteAsync(string id)
@@ -81,17 +80,11 @@ namespace Mine.Services
 
             Database.DeleteAsync(myRead);
             return Task.FromResult(true);
-
         }
 
         public Task<List<ItemModel>> IndexAsync(bool flag=false)
         {
             return Database.Table<ItemModel>().ToListAsync();
-        }
-
-        public bool InitializeDatabaseNewTables()
-        {
-            return true; 
         }
 
         // Delete the Datbase Tables by dropping them
@@ -104,11 +97,6 @@ namespace Mine.Services
         public async void CreateTables()
         {
             await Database.CreateTableAsync<ItemModel>();
-        }
-
-        public void NotifyViewModelsOfDataChange()
-        {
-            
         }
     }
 }
