@@ -7,11 +7,11 @@
              x:Class="Mine.Views.AboutPage"
              xmlns:vm="clr-namespace:Mine.ViewModels"
              Title="{Binding Title}">
-    
+
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
@@ -23,6 +23,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
@@ -39,6 +40,53 @@
                 <Label x:Name="CurrentDateTime"></Label>
             </StackLayout>
         </ScrollView>
+
+        <ScrollView Grid.Row="2">
+            <StackLayout Orientation="Vertical">
+                <StackLayout 
+                    Orientation="Horizontal" 
+                    VerticalOptions="Center"
+                    Padding="50,0,0,0"
+                    >
+
+                    <Label 
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"
+                    Text="SQL Data Source" 
+                    />
+
+                    <Switch
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"
+                    x:Name="DataSourceValue"
+                    IsToggled="{Binding ItemIndexViewModel.Instance.CurrentDataSource}"
+                    Toggled="DataSource_Toggled" 
+                    />
+
+                </StackLayout>
+                
+                <StackLayout 
+                    Orientation="Horizontal" 
+                    VerticalOptions="Center"
+                    Padding="50,0,0,0"
+                    >
+
+                    <Label 
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"
+                    Text="Wipe Data List" 
+                    />
+
+                    <Button
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"
+                    Text="Wipe"
+                    Clicked="WipeDataList_Clicked"
+                    />
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </Grid>
-    
+
 </ContentPage>
