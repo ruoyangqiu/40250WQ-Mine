@@ -16,14 +16,44 @@ namespace Mine.ViewModels
     /// </summary>
     public class ItemIndexViewModel : BaseViewModel
     {
+        private static volatile ItemIndexViewModel instance;
+        private static readonly object syncRoot = new Object();
+
+        public static ItemIndexViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new ItemIndexViewModel();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+        
         // The Data set of records
         public ObservableCollection<ItemModel> Dataset { get; set; }
 
         /// <summary>
         /// Connection to the Data store
         /// </summary>
-        public IDataStore<ItemModel> DataStore => DependencyService.Get<IDataStore<ItemModel>>();
+        // public IDataStore<ItemModel> DataStore => DependencyService.Get<IDataStore<ItemModel>>();
 
+
+        public IDataStore<ItemModel> DataSource_Mock => new MockDataStore();
+        public IDataStore<ItemModel> DataSource_SQL => new DatabaseService();
+
+        public IDataStore<ItemModel> DataStore;
+
+        public int CurrentDataSource = 0;
+        
         // Command to force a Load of data
         public Command LoadDatasetCommand { get; set; }
 
@@ -34,8 +64,10 @@ namespace Mine.ViewModels
         /// 
         /// The constructor subscribes message listeners for crudi operations
         /// </summary>
-        public ItemIndexViewModel()
+        private ItemIndexViewModel()
         {
+            SetDataSource(CurrentDataSource);   // Set to Mock to start with
+
             Title = "Items";
 
             Dataset = new ObservableCollection<ItemModel>();
@@ -58,6 +90,42 @@ namespace Mine.ViewModels
             {
                 await Update(data as ItemModel);
             });
+
+            // Register the Set Data Source Message
+            MessagingCenter.Subscribe<AboutPage, int>(this, "SetDataSource", (obj, data) =>
+            {
+                SetDataSource(data);
+            });
+
+            // Register the Wipe Data List Message
+            MessagingCenter.Subscribe<AboutPage, bool>(this, "WipeDataList", (obj, data) =>
+            {
+                WipeDataList();
+            });
+        }
+
+        public void WipeDataList()
+        {
+            DataStore.WipeDataList();
+            SetNeedsRefresh(true);
+        }
+
+        public bool SetDataSource(int isSQL)
+        {
+            if (isSQL == 1)
+            {
+                DataStore = DataSource_SQL;
+                CurrentDataSource = 1;            
+            }
+            else
+            {
+                DataStore = DataSource_Mock;
+                CurrentDataSource = 0;
+            }
+
+            SetNeedsRefresh(true);
+
+            return true;
         }
 
         /// <summary>
@@ -172,7 +240,8 @@ namespace Mine.ViewModels
 
                 foreach (var data in dataset)
                 {
-                    Dataset.Add(data);
+                    // Make a Copy of the Item Model to add to the List
+                    Dataset.Add(new ItemModel(data));
                 }
             }
             catch (Exception ex)
