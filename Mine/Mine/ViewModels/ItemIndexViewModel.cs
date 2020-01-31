@@ -123,6 +123,7 @@ namespace Mine.ViewModels
                 CurrentDataSource = 0;
             }
 
+            // Set Flag for Refresh
             SetNeedsRefresh(true);
 
             return true;

@@ -37,6 +37,9 @@ namespace Mine.Views
         {
             MessagingCenter.Send(this, "Update", ViewModel.Data);
             await Navigation.PopModalAsync();   // Remove this page
+
+            // Force the ViewModel to set Refresh
+            ItemIndexViewModel.Instance.ForceDataRefresh();
         }
 
         /// <summary>

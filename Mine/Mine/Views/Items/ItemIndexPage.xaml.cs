@@ -68,6 +68,7 @@ namespace Mine.Views
         {
             base.OnAppearing();
 
+            // Checking to see if a refresh is needed
             if (viewModel.NeedsRefresh())
             {
                 viewModel.LoadDatasetCommand.Execute(null);
