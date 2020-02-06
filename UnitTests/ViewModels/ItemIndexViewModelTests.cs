@@ -10,6 +10,8 @@ namespace UnitTests.ViewModels
 {
     public class ItemIndexViewModelTests
     {
+        ItemIndexViewModel ViewModel;
+
         [SetUp]
         public void Setup()
         {
@@ -18,6 +20,11 @@ namespace UnitTests.ViewModels
 
             // Activate the Datastore
             DependencyService.Register<MockDataStore>();
+
+            ViewModel = new ItemIndexViewModel();
+
+            // Load Data
+            ViewModel.LoadDatasetCommand.Execute(null);
         }
 
         [Test]
@@ -26,7 +33,7 @@ namespace UnitTests.ViewModels
             // Arrange
 
             // Act
-            var result = await new ItemIndexViewModel().Read("bogus");
+            var result = await ViewModel.Read("bogus");
 
             // Reset
 
@@ -38,16 +45,12 @@ namespace UnitTests.ViewModels
         public async Task ItemIndexViewModel_Read_Valid_ID_Bogus_Should_Pass()
         {
             // Arrange
-            var ViewModel = new ItemIndexViewModel();
-
-            // Load Data
-            ViewModel.LoadDatasetCommand.Execute(null);
 
             // Find the First ID
             var first = ViewModel.Dataset.FirstOrDefault();
 
             // Act
-            var result = await new ItemIndexViewModel().Read(first.Id);
+            var result = await ViewModel.Read(first.Id);
 
             // Reset
 
