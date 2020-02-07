@@ -26,7 +26,7 @@ namespace UnitTests.ViewModels
             ViewModel = new ItemIndexViewModel();
 
             // Load Data
-            ViewModel.LoadDatasetCommand.Execute(null);
+            ViewModel.ForceDataRefresh();
         }
 
         [Test]
@@ -116,10 +116,24 @@ namespace UnitTests.ViewModels
 
             // Need to clear the added item, and reload the dataset
             ViewModel.Dataset.Clear();
-            ViewModel.LoadDatasetCommand.Execute(null);
+            ViewModel.ForceDataRefresh();
 
             // Assert
             Assert.AreEqual(true, result);  // Update returned Pass
+        }
+
+        [Test]
+        public async Task ItemIndexViewModel_Add_InValid_Null_Should_Fail()
+        {
+            // Arrange
+
+            // Act
+            var result = await ViewModel.Add(null);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(false, result);
         }
     }
 }

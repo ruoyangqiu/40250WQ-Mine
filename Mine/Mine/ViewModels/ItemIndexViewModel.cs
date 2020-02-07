@@ -78,6 +78,12 @@ namespace Mine.ViewModels
         /// <returns></returns>
         public async Task<bool> Add(ItemModel data)
         {
+            // Don't try to add bad records
+            if (data == null)
+            {
+                return false;
+            }
+
             Dataset.Add(data);
             var result = await DataStore.CreateAsync(data);
 
