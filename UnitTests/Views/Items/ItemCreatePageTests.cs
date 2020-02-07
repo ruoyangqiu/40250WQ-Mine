@@ -15,7 +15,7 @@ namespace UnitTests.Views.Game
     public class ItemCreatePageTests
     {
         [Test]
-        public void GamePage_Constructor_Default_Should_Pass()
+        public void ItemCreatePage_Constructor_Default_Should_Pass()
         {
             // Arrange
             var ViewModel = new ItemViewModel();
