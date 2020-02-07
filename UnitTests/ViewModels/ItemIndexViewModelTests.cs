@@ -354,5 +354,40 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(countBefore + 1, countAfter); // Count of 0 for the load was skipped
         }
+
+        [Test]
+        public async Task ItemIndexViewModel_Message_Update_Valid_Should_Pass()
+        {
+            // Arrange
+            MockForms.Init();
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
+
+            // Get the item to delete
+            var first = ViewModel.Dataset.FirstOrDefault();
+            first.Name = "test";
+
+            // Add it to the View Model
+            var viewModel = new ItemViewModel
+            {
+                Data = first
+            };
+
+            // Make a Delete Page
+            var myPage = new Mine.Views.ItemUpdatePage(viewModel);
+
+            var countBefore = ViewModel.Dataset.Count();
+
+            // Act
+            MessagingCenter.Send(myPage, "Update", viewModel.Data);
+            var result = await ViewModel.Read(first.Id);
+
+            // Reset
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual("test", result.Name); // Count of 0 for the load was skipped
+        }
     }
 }
