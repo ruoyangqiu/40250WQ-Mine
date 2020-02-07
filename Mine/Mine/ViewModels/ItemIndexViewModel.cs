@@ -148,6 +148,11 @@ namespace Mine.ViewModels
             return false;
         }
 
+        public bool GetNeedsRefresh()
+        {
+            return _needsRefresh;
+        }
+
         // Sets the need to refresh
         public void SetNeedsRefresh(bool value)
         {
