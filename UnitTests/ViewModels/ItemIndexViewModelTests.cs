@@ -264,5 +264,62 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(true, ViewModel.Dataset.Count()>0); // Check that there are rows of data
         }
+
+        [Test]
+        public void ItemIndexViewModel_ExecuteLoadDataCommand_Valid_IsBusy_Should_Pass()
+        {
+            // Arrange
+
+            // Setting IsBusy will have the Load skip
+            ViewModel.IsBusy = true;
+
+            // Clear the Dataset, so no records
+            ViewModel.Dataset.Clear();
+
+            // Act
+            ViewModel.LoadDatasetCommand.Execute(null);
+            var count = ViewModel.Dataset.Count();  // Remember how many records exist
+
+            // Reset
+            ViewModel.IsBusy = false;
+            ViewModel.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual(0, count); // Count of 0 for the load was skipped
+        }
+
+        [Test]
+        public async Task ItemIndexViewModel_Message_Delete_Valid_Should_Pass()
+        {
+            // Arrange
+            MockForms.Init();
+            
+            // Make a new Item
+            var data = new ItemModel();
+
+            // Add it to the System
+            await ViewModel.Add(data);
+
+            // Add it to the View Model
+            var viewModel = new ItemViewModel
+            {
+                Data = data
+            };
+
+            // Make a Delete Page
+            var myPage = new Mine.Views.ItemDeletePage(viewModel);
+
+            var countBefore = ViewModel.Dataset.Count();
+
+            // Act
+            MessagingCenter.Send(myPage, "Delete", viewModel.Data);
+            var countAfter = ViewModel.Dataset.Count();
+
+            // Reset
+            ViewModel.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual(countBefore-1, countAfter); // Count of 0 for the load was skipped
+        }
     }
 }
