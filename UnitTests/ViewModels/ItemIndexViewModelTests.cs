@@ -137,7 +137,7 @@ namespace UnitTests.ViewModels
         }
 
         [Test]
-        public async Task ItemIndexViewModel_SetNeedsRefresh_Valid_True_Should_Pass()
+        public void ItemIndexViewModel_SetNeedsRefresh_Valid_True_Should_Pass()
         {
             // Arrange
             var originalState = ViewModel.GetNeedsRefresh();
