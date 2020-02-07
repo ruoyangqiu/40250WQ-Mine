@@ -215,5 +215,27 @@ namespace UnitTests.ViewModels
             Assert.AreEqual(true, result);  // Delete returned pass
             Assert.AreEqual(null, exists);  // Should not exist so is null
         }
+
+        [Test]
+        public async Task ItemIndexViewModel_Delete_Invalid_Should_Fail()
+        {
+            // Arrange
+            var data = new ItemModel
+            {
+                Id = "bogus"
+            };
+
+            // Act
+            var result = await ViewModel.Delete(data);
+
+            // Reset
+
+            // Need to clear the added item, and reload the dataset
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual(false, result);  // Delete returned pass
+        }
     }
 }
