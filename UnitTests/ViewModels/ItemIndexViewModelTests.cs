@@ -321,6 +321,38 @@ namespace UnitTests.ViewModels
             Assert.AreEqual(null,data); // Item is removed
         }
 
-       
+        [Test]
+        public void ItemIndexViewModel_Message_Create_Valid_Should_Pass()
+        {
+            // Arrange
+            MockForms.Init();
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
+
+            // Make a new Item
+            var data = new ItemModel();
+
+            // Add it to the View Model
+            var viewModel = new ItemViewModel
+            {
+                Data = data
+            };
+
+            // Make a Delete Page
+            var myPage = new Mine.Views.ItemCreatePage(viewModel);
+
+            var countBefore = ViewModel.Dataset.Count();
+
+            // Act
+            MessagingCenter.Send(myPage, "Create", viewModel.Data);
+            var countAfter = ViewModel.Dataset.Count();
+
+            // Reset
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual(countBefore + 1, countAfter); // Count of 0 for the load was skipped
+        }
     }
 }
