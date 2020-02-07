@@ -99,5 +99,27 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(false, result);  // Update returned Pas
         }
+
+        [Test]
+        public async Task ItemIndexViewModel_Add_Valid_Should_Pass()
+        {
+            // Arrange
+            var data = new ItemModel
+            {
+                Name = "New Item"
+            };
+
+            // Act
+            var result = await ViewModel.Add(data);
+
+            // Reset
+
+            // Need to clear the added item, and reload the dataset
+            ViewModel.Dataset.Clear();
+            ViewModel.LoadDatasetCommand.Execute(null);
+
+            // Assert
+            Assert.AreEqual(true, result);  // Update returned Pass
+        }
     }
 }
