@@ -44,7 +44,7 @@ namespace UnitTests.ViewModels
         }
 
         [Test]
-        public async Task ItemIndexViewModel_Read_Valid_ID_Bogus_Should_Pass()
+        public async Task ItemIndexViewModel_Read_Valid_ID_Should_Pass()
         {
             // Arrange
 
