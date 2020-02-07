@@ -230,12 +230,8 @@ namespace UnitTests.ViewModels
 
             // Reset
 
-            // Need to clear the added item, and reload the dataset
-            ViewModel.Dataset.Clear();
-            ViewModel.ForceDataRefresh();
-
             // Assert
-            Assert.AreEqual(false, result);  // Delete returned pass
+            Assert.AreEqual(false, result);  // Delete returned fail
         }
 
         [Test]
