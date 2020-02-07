@@ -293,33 +293,34 @@ namespace UnitTests.ViewModels
         {
             // Arrange
             MockForms.Init();
-            
-            // Make a new Item
-            var data = new ItemModel();
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
 
-            // Add it to the System
-            await ViewModel.Add(data);
+            // Get the item to delete
+            var first = ViewModel.Dataset.FirstOrDefault();
 
             // Add it to the View Model
             var viewModel = new ItemViewModel
             {
-                Data = data
+                Data = first
             };
 
             // Make a Delete Page
             var myPage = new Mine.Views.ItemDeletePage(viewModel);
 
-            var countBefore = ViewModel.Dataset.Count();
-
             // Act
             MessagingCenter.Send(myPage, "Delete", viewModel.Data);
-            var countAfter = ViewModel.Dataset.Count();
+
+            var data = await ViewModel.Read(first.Id);
 
             // Reset
+            ViewModel.Dataset.Clear();
             ViewModel.ForceDataRefresh();
 
             // Assert
-            Assert.AreEqual(countBefore-1, countAfter); // Count of 0 for the load was skipped
+            Assert.AreEqual(null,data); // Item is removed
         }
+
+       
     }
 }
