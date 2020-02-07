@@ -55,7 +55,7 @@ namespace UnitTests.ViewModels
             // Reset
 
             // Assert
-            Assert.AreEqual(result.Name, first.Name);
+            Assert.AreEqual(first.Name, result.Name);
         }
     }
 }
