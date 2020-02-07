@@ -194,5 +194,26 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(false, result);
         }
+
+        [Test]
+        public async Task ItemIndexViewModel_Delete_Valid_Should_Pass()
+        {
+            // Arrange
+            var first = ViewModel.Dataset.FirstOrDefault();
+
+            // Act
+            var result = await ViewModel.Delete(first);
+            var exists = await ViewModel.Read(first.Id);
+
+            // Reset
+
+            // Need to clear the added item, and reload the dataset
+            ViewModel.Dataset.Clear();
+            ViewModel.ForceDataRefresh();
+
+            // Assert
+            Assert.AreEqual(true, result);  // Delete returned pass
+            Assert.AreEqual(null, exists);  // Should not exist so is null
+        }
     }
 }
