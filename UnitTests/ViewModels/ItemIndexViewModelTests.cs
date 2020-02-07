@@ -247,5 +247,22 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(false, result);
         }
+
+        [Test]
+        public void ItemIndexViewModel_ExecuteLoadDataCommand_Valid_Should_Pass()
+        {
+            // Arrange
+            
+            // Clear the Dataset, so no records
+            ViewModel.Dataset.Clear();
+
+            // Act
+            ViewModel.LoadDatasetCommand.Execute(null);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(true, ViewModel.Dataset.Count()>0); // Check that there are rows of data
+        }
     }
 }
