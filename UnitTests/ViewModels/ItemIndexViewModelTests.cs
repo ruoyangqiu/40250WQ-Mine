@@ -82,5 +82,22 @@ namespace UnitTests.ViewModels
             Assert.AreEqual("New Item", first.Name);  // The Name was updated
             Assert.AreEqual(1000, first.Value);  // The Value was updated
         }
+
+        [Test]
+        public async Task ItemIndexViewModel_Update_Invalid_Bogus_Should_Fail()
+        {
+            // Arrange
+
+            // Update only updates what is in the list, so update on something that does not exist will fail
+            var newData = new ItemModel();
+
+            // Act
+            var result = await ViewModel.Update(newData);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(false, result);  // Update returned Pas
+        }
     }
 }
