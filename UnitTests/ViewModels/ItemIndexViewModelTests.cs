@@ -97,7 +97,7 @@ namespace UnitTests.ViewModels
             // Reset
 
             // Assert
-            Assert.AreEqual(false, result);  // Update returned Pas
+            Assert.AreEqual(false, result);  // Update returned fail
         }
 
         [Test]
