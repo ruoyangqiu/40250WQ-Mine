@@ -237,5 +237,19 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(false, result);  // Delete returned pass
         }
+
+        [Test]
+        public async Task ItemIndexViewModel_Delete_Invalid_Null_Should_Fail()
+        {
+            // Arrange
+
+            // Act
+            var result = await ViewModel.Delete(null);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
     }
 }
