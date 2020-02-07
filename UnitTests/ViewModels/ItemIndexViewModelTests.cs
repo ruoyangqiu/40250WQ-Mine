@@ -2,9 +2,11 @@
 using Mine.ViewModels;
 using Xamarin.Forms.Mocks;
 using Xamarin.Forms;
-using Mine.Services;
 using System.Threading.Tasks;
 using System.Linq;
+
+using Mine.Services;
+using Mine.Models;
 
 namespace UnitTests.ViewModels
 {
@@ -56,6 +58,29 @@ namespace UnitTests.ViewModels
 
             // Assert
             Assert.AreEqual(first.Name, result.Name);
+        }
+
+        [Test]
+        public async Task ItemIndexViewModel_Update_Valid_Should_Pass()
+        {
+            // Arrange
+
+            // Find the First ID
+            var first = ViewModel.Dataset.FirstOrDefault();
+
+            // Make a new item
+            first.Name = "New Item";
+            first.Value = 1000;
+
+            // Act
+            var result = await ViewModel.Update(first);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(true, result);  // Update returned Pas
+            Assert.AreEqual("New Item", first.Name);  // The Name was updated
+            Assert.AreEqual(1000, first.Value);  // The Value was updated
         }
     }
 }
