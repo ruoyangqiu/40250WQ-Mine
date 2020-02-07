@@ -174,5 +174,25 @@ namespace UnitTests.ViewModels
             // Assert
             Assert.AreEqual(true, result);
         }
+
+        [Test]
+        public void ItemIndexViewModel_NeedsRefresh_Valid_False_Should_Pass()
+        {
+            // Arrange
+            var originalState = ViewModel.GetNeedsRefresh();
+
+            ViewModel.SetNeedsRefresh(false);
+
+            // Act
+            var result = ViewModel.NeedsRefresh();
+
+            // Reset
+
+            // Turn it back to the original state
+            ViewModel.SetNeedsRefresh(originalState);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
     }
 }
