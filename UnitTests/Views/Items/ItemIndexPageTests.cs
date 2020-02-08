@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Mine.Views;
 using Mine.ViewModels;
 using Mine.Models;
+using Xamarin.Forms;
 
 namespace UnitTests.Views.Game
 {
@@ -38,6 +39,28 @@ namespace UnitTests.Views.Game
 
             // Act
             page.AddItem_Clicked(null,null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void ItemIndexPage_OnItemSelected_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+            var ViewModel = new ItemViewModel();
+
+            var page = new ItemIndexPage();
+
+            var selectedItem = new ItemModel();
+
+            var selectedItemChangedEventArgs = new SelectedItemChangedEventArgs(selectedItem,0);
+
+
+            // Act
+            page.OnItemSelected(null, selectedItemChangedEventArgs);
 
             // Reset
 
