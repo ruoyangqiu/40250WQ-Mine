@@ -33,7 +33,7 @@ namespace Mine.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Save_Clicked(object sender, EventArgs e)
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "Update", ViewModel.Data);
             await Navigation.PopModalAsync();   // Remove this page
@@ -44,7 +44,7 @@ namespace Mine.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Cancel_Clicked(object sender, EventArgs e)
+        public async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();   // Remove this page
         }
@@ -54,7 +54,7 @@ namespace Mine.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        public void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             ValueValue.Text = String.Format("{0}", e.NewValue);
         }
