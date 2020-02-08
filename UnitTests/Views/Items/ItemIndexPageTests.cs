@@ -13,7 +13,7 @@ using Xamarin.Forms;
 namespace UnitTests.Views.Game
 {
     [TestFixture]
-    public class ItemIndexPageTests
+    public class ItemIndexPageTests : ItemIndexPage
     {
         [Test]
         public void ItemIndexPage_Constructor_Default_Should_Pass()
@@ -87,5 +87,21 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
+
+        [Test]
+        public void ItemIndexPage_OnAppearing_Valid_Should_Pass()
+        {
+            // Arrange
+            var ViewModel = new ItemViewModel();
+
+            // Act
+            OnAppearing();
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
     }
 }
