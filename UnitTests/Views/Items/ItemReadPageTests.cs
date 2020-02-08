@@ -48,5 +48,22 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
+
+        [Test]
+        public void ItemReadPage_Update_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+            var ViewModel = new ItemViewModel();
+
+            var page = new ItemReadPage(ViewModel);
+
+            // Act
+            page.Update_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
     }
 }
