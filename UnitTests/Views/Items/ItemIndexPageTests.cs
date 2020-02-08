@@ -27,5 +27,22 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void ItemIndexPage_AddItem_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+            var ViewModel = new ItemViewModel();
+
+            var page = new ItemIndexPage();
+
+            // Act
+            page.AddItem_Clicked(null,null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
     }
 }

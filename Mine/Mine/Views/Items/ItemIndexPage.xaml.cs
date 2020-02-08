@@ -56,7 +56,7 @@ namespace Mine.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void AddItem_Clicked(object sender, EventArgs e)
+        public async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new ItemCreatePage(new ItemViewModel())));
         }
