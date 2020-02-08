@@ -15,7 +15,7 @@ using Mine.Models;
 namespace UnitTests.Views.Game
 {
     [TestFixture]
-    public class ItemUpdatePageTests
+    public class ItemUpdatePageTests: ItemUpdatePage
     {
         [Test]
         public void ItemUpdatePage_Constructor_Default_Should_Pass()
@@ -80,6 +80,20 @@ namespace UnitTests.Views.Game
 
             // Act
             page.Value_OnStepperValueChanged(null, args);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void ItemIndexPage_OnBackButtonPressed_Valid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            OnBackButtonPressed();
 
             // Reset
 

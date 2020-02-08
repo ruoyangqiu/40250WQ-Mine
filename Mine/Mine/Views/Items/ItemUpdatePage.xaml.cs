@@ -18,6 +18,11 @@ namespace Mine.Views
         // View Model for Item
         ItemViewModel ViewModel;
 
+        // Constructor for UTs
+        public ItemUpdatePage()
+        {
+        }
+
         /// <summary>
         /// Constructor that takes and existing data item
         /// </summary>
