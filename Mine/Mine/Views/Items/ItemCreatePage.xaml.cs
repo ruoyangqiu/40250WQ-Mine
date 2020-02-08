@@ -18,6 +18,11 @@ namespace Mine.Views
         // The item to create
         ItemViewModel ViewModel { get; set; }
 
+        // Constructor for UTs
+        public ItemCreatePage()
+        {
+        }
+
         /// <summary>
         /// Constructor for Create makes a new model
         /// </summary>

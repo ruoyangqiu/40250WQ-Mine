@@ -12,7 +12,7 @@ using Mine.Models;
 namespace UnitTests.Views.Game
 {
     [TestFixture]
-    public class ItemCreatePageTests
+    public class ItemCreatePageTests : ItemCreatePage
     {
         [Test]
         public void ItemCreatePage_Constructor_Default_Should_Pass()
@@ -56,6 +56,20 @@ namespace UnitTests.Views.Game
 
             // Act
             page.Save_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void ItemCreatePage_OnBackButtonPressed_Valid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            OnBackButtonPressed();
 
             // Reset
 
