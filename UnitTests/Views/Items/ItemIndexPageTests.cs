@@ -102,6 +102,5 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsTrue(true); // Got to here, so it happened...
         }
-
     }
 }
