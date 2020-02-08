@@ -25,5 +25,21 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void GamePage_GameButton_Clicked_Default_Should_Pass()
+        {
+            // Arrange
+
+            var page = new GamePage();
+
+            // Act
+            page.GameButton_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
     }
 }
