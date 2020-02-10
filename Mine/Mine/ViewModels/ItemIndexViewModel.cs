@@ -181,6 +181,11 @@ namespace Mine.ViewModels
 
             try
             {
+                if (Dataset == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 Dataset.Clear();
                 var dataset = await DataStore.IndexAsync(true);
 

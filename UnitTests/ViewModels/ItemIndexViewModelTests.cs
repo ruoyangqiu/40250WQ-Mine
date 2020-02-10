@@ -266,6 +266,26 @@ namespace UnitTests.ViewModels
         }
 
         [Test]
+        public void ItemIndexViewModel_ExecuteLoadDataCommand_InValid_Exception_Should_Fail()
+        {
+            // Arrange
+            var oldDataset = ViewModel.Dataset;
+
+            // Null dataset will throw
+
+            ViewModel.Dataset = null;
+
+            // Act
+            ViewModel.LoadDatasetCommand.Execute(null);
+
+            // Reset
+            ViewModel.Dataset = oldDataset;
+
+            // Assert
+            Assert.AreEqual(true, ViewModel.Dataset.Count() > 0); // Check that there are rows of data
+        }
+
+        [Test]
         public void ItemIndexViewModel_ExecuteLoadDataCommand_Valid_IsBusy_Should_Pass()
         {
             // Arrange
