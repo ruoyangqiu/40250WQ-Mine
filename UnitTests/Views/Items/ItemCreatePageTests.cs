@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Mine.Views;
 using Mine.ViewModels;
 using Mine.Models;
+using Xamarin.Forms;
 
 namespace UnitTests.Views.Game
 {
@@ -70,6 +71,27 @@ namespace UnitTests.Views.Game
 
             // Act
             OnBackButtonPressed();
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void ItemCreatePage_Value_OnStepperValueChanged_Default_Should_Pass()
+        {
+            // Arrange
+            var ViewModel = new ItemViewModel();
+
+            var page = new ItemCreatePage(ViewModel);
+            double oldValue = 0.0;
+            double newValue = 1.0;
+
+            var args = new ValueChangedEventArgs(oldValue, newValue);
+
+            // Act
+            page.Value_OnStepperValueChanged(null, args);
 
             // Reset
 
