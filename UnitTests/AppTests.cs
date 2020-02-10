@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Mine.Views;
 using Xamarin.Forms.Mocks;
 using Mine;
+using Xamarin.Forms;
 
 namespace UnitTests.Views.Game
 {
@@ -23,7 +24,7 @@ namespace UnitTests.Views.Game
             MockForms.Init();
 
             // Act
-            var result = new Mine.App();
+            var result = new App();
 
             // Reset
 
@@ -38,7 +39,6 @@ namespace UnitTests.Views.Game
 
             // Initilize Xamarin Forms
             MockForms.Init();
-            var page = new Mine.App();
 
             // Act
             OnResume();
@@ -56,7 +56,6 @@ namespace UnitTests.Views.Game
 
             // Initilize Xamarin Forms
             MockForms.Init();
-            var page = new Mine.App();
 
             // Act
             OnSleep();
@@ -74,7 +73,6 @@ namespace UnitTests.Views.Game
 
             // Initilize Xamarin Forms
             MockForms.Init();
-            var page = new Mine.App();
 
             // Act
             OnStart();
@@ -85,22 +83,23 @@ namespace UnitTests.Views.Game
             Assert.IsTrue(true); // Got to here, so it happened...
         }
 
-        //[Test]
-        //public void App_InitializeComponent_Default_Should_Pass()
-        //{
-        //    Arrange
+        [Test]
+        public void App_InitializeComponent_Default_Should_Pass()
+        {
+            // Arrange
 
-        //    Initilize Xamarin Forms
-        //    MockForms.Init();
-        //    var page = new Mine.App();
+            // Initilize Xamarin Forms
+            
+            MockForms.Init();
+            var page = new App();
 
-        //    Act
-        //    InitializeComponent();
+            // Act
+            var result = page.Resources["NavigationPrimary"];
 
-        //    Reset
+            //Reset
 
-        //    Assert
-        //    Assert.IsTrue(true); // Got to here, so it happened...
-        //}
+            // Assert
+            Assert.IsNotNull(result); // Got to here, so it happened...
+        }
     }
 }
