@@ -1,12 +1,11 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
 using Mine.Views;
+using Mine.Models;
+
 using Xamarin.Forms.Mocks;
+using Xamarin.Forms;
 
 namespace UnitTests.Views.Game
 {
@@ -31,5 +30,124 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public async Task MainPage_Navigate_About_Should_Pass()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init();
+
+            var page = new MainPage();
+
+            // Act
+            await page.NavigateFromMenu((int)MenuItemEnum.About);
+                       
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+
+        [Test]
+        public async Task MainPage_Navigate_Items_Should_Pass()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init();
+
+            var page = new MainPage();
+
+            // Act
+            await page.NavigateFromMenu((int)MenuItemEnum.Items);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+
+        [Test]
+        public async Task MainPage_Navigate_Game_Should_Pass()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init();
+
+            var page = new MainPage();
+
+            // Act
+            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+
+        [Test]
+        public async Task MainPage_Navigate_Game_Twice_Should_Skip()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init();
+
+            var page = new MainPage();
+            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+
+            // Act
+            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+
+        [Test]
+        public async Task MainPage_Navigate_Invalid_ID_100_Should_Skip()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init();
+
+            var page = new MainPage();
+
+            page.MenuPages.Add(100, null);
+
+            // Act
+            await page.NavigateFromMenu(100);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+
+        [Test]
+        public async Task MainPage_Navigate_Device_Android_Game_Should_Pass()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init(Device.Android);
+
+            var page = new MainPage();
+            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+
+            // Act
+            await page.NavigateFromMenu((int)MenuItemEnum.Game);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+        
     }
 }

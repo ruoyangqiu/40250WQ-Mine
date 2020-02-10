@@ -15,7 +15,7 @@ namespace Mine.Views
     public partial class MainPage : MasterDetailPage
     {
         // Collection of Navigation Pages
-        Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        public Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
 
         /// <summary>
         /// Constructor setups the behavior and menu pages
@@ -25,8 +25,6 @@ namespace Mine.Views
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
-
-           //MenuPages.Add((int)MenuItemEnum.Items, (NavigationPage)Detail);
         }
 
         /// <summary>
@@ -57,18 +55,27 @@ namespace Mine.Views
             // Switch to the Page
             var newPage = MenuPages[id];
 
-            if (newPage != null && Detail != newPage)
+            // Don't jump to empty...
+            if (newPage == null)
             {
-                Detail = newPage;
-
-                // Android needs a deal, iOS and UWP does not
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await Task.Delay(100);
-                }
-
-                IsPresented = false;
+                return;
             }
+
+            // Already There
+            if (Detail == newPage)
+            {
+                return;
+            }
+
+            Detail = newPage;
+
+            // Android needs a deal, iOS and UWP does not
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                await Task.Delay(100);
+            }
+
+            IsPresented = false;
         }
     }
 }
