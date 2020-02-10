@@ -15,21 +15,21 @@ namespace UnitTests.Views.Game
     {
         // Not Possible to Cover the MainPage due to the call to MasterBehavior = MasterBehavior.Popover;
 
-        //[Test]
-        //public void MainPage_Constructor_Default_Should_Pass()
-        //{
-        //    // Arrange
+        [Test]
+        public void MainPage_Constructor_Default_Should_Pass()
+        {
+            // Arrange
 
-        //    // Initilize Xamarin Forms
-        //    MockForms.Init();
+            // Initilize Xamarin Forms
+            MockForms.Init();
 
-        //    // Act
-        //    var result = new MainPage();
+            // Act
+            var result = new MainPage();
 
-        //    // Reset
+            // Reset
 
-        //    // Assert
-        //    Assert.IsNotNull(result);
-        //}
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
