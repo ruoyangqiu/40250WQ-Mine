@@ -11,7 +11,7 @@ using Mine.Models;
 namespace UnitTests.Views.Game
 {
     [TestFixture]
-    public class ItemDeletePageTests
+    public class ItemDeletePageTests : ItemDeletePage
     {
         [Test]
         public void ItemDeletePage_Constructor_Default_Should_Pass()
@@ -55,6 +55,20 @@ namespace UnitTests.Views.Game
 
             // Act
             page.Cancel_Clicked(null, null);
+
+            // Reset
+
+            // Assert
+            Assert.IsTrue(true); // Got to here, so it happened...
+        }
+
+        [Test]
+        public void ItemDeletePage_OnBackButtonPressed_Valid_Should_Pass()
+        {
+            // Arrange
+
+            // Act
+            OnBackButtonPressed();
 
             // Reset
 

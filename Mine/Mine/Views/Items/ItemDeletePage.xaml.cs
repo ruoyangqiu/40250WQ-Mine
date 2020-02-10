@@ -18,8 +18,13 @@ namespace Mine.Views
         // View Model for Item
         ItemViewModel viewModel;
 
+        // Empty Constructor for UTs
+        public ItemDeletePage()
+        {
+        }
+            
         // Constructor for Delete takes a view model of what to delete
-        public ItemDeletePage(ItemViewModel data)
+            public ItemDeletePage(ItemViewModel data)
         {
             InitializeComponent();
 
