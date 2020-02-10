@@ -101,6 +101,20 @@ namespace UnitTests.ViewModels
         }
 
         [Test]
+        public async Task ItemIndexViewModel_Update_Invalid_Null_Should_Fail()
+        {
+            // Arrange
+
+            // Act
+            var result = await ViewModel.Update(null);
+
+            // Reset
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [Test]
         public async Task ItemIndexViewModel_Add_Valid_Should_Pass()
         {
             // Arrange
