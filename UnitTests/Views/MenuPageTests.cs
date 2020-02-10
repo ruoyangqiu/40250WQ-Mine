@@ -29,5 +29,23 @@ namespace UnitTests.Views.Game
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void MenuPage_Get_Default_Should_Pass()
+        {
+            // Arrange
+
+            // Initilize Xamarin Forms
+            MockForms.Init();
+
+            var page = new MenuPage();
+            // Act
+            var result = page.RootPage;
+
+            // Reset
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
